@@ -1,5 +1,7 @@
 package cat.wars.algorithm.part1;
 
+import java.util.Arrays;
+
 /**
  * Created by IntelliJ IDEA.
  * User: wars
@@ -13,6 +15,8 @@ public class Main {
     public static void main(String[] args) {
         a();
         b();
+        c();
+        d();
     }
 
     /**
@@ -25,7 +29,7 @@ public class Main {
      * 采用java求解
      * log2n = logen / loge2
      */
-    static void a() {
+    private static void a() {
         int n = 1;
         int threshold = 0;
         int threshold2 = 0;
@@ -56,7 +60,7 @@ public class Main {
      * <p>
      * 200n^2 < 2^n
      */
-    static void b() {
+    private static void b() {
         double n = 1;
         while (!(100 * Math.pow(n, 2) < Math.pow(2, n))) {
             // ++n;
@@ -66,4 +70,47 @@ public class Main {
         System.out.println("\tn:" + n);
     }
 
+    /**
+     * 插入排序：
+     * > 对于少量元素的排序，他是一个有效的算法。
+     */
+    private static void c() {
+        System.out.println("## 插入排序：\n" +
+                "> 对于少量元素的排序，他是一个有效的算法。");
+        int[] arr = {5, 2, 4, 6, 1, 3};
+        System.out.println("I: "+Arrays.toString(arr));
+        insertionSort(arr);
+        System.out.println("O: "+Arrays.toString(arr));
+    }
+
+    private static void insertionSort(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            int b = arr[i];
+            int i2 = i - 1;
+            while (-1 < i2 && arr[i2] > b) {
+                arr[i2 + 1] = arr[i2];
+                --i2;
+            }
+            arr[i2 + 1] = b;
+        }
+    }
+    private static void insertionSortDesc(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            int b = arr[i];
+            int i2 = i - 1;
+            while (-1 < i2 && arr[i2] < b) {
+                arr[i2 + 1] = arr[i2];
+                --i2;
+            }
+            arr[i2 + 1] = b;
+        }
+    }
+
+    private static void d(){
+        System.out.println("### 2.1-2) 重写过程INSERTION-SORT, 使其按非升序(而不是非降序)排序");
+        int[] arr = {5, 2, 4, 6, 1, 3};
+        System.out.println("I: "+Arrays.toString(arr));
+        insertionSortDesc(arr);
+        System.out.println("O: "+Arrays.toString(arr));
+    }
 }
