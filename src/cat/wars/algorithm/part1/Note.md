@@ -65,6 +65,41 @@ Example: T(n) = T(n/4) + T(n/2) + n²
               = ...
               = n²(1 + 5/16 + (5/16)² + (5/16)³ + ...)
               = Θ(n²) // ignore consts
+              
+#### 主方法(Master method)解upper bounds
+T(n) = aT(n/b) + f(n), where a>=1, b>1, and f is asymptotically positive.
+case1:
+```
+Compare f(n) with nlogba:
+    f(n) = O(n^(logba–ε)) for some constant ε > 0.
+    • f(n) grows polynomially slower than nlogba(by an nε factor).
+    => T(n) = Θ(n^(logba)).
+```
+case2:
+```
+    f(n) = Θ(n^(logba)*lgn) for some constant k ≥ 0.
+    • f(n) and n(logba) grow at similar rates.
+    => T(n) = Θ(n^(logba) lgn).
+```
+case3:
+```
+    f(n) = Ω(n^(logba)+ε) for some constant ε > 0.
+    • f(n) grows polynomially faster than nlogba (by
+    an nε factor),
+    and f(n) satisfies the regularity condition that
+    af(n/b) ≤ cf(n) for some constant c < 1.
+    => T(n) = Θ(f(n)).
+```
+*Example1: T(n) = 4T(n/2) + n*  
+n^(logba–1) = n, case1, Result: Θ(n^(logba))  
+
+*Example2: T(n) = 4T(n/2) + n²*  
+n^(logba) = n², case2, Result: Θ(n^(logba) * lgn)  
+
+*Example3: T(n) = 4T(n/2) + n³*  
+n^(logba+1) = n³, case3, Result: Θ(n³)  
+
+
 
 ### Ω(big-omege) lover bounds
 Ω(g(n)) = { f(n):   
